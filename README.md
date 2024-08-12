@@ -2,6 +2,12 @@
 
 the user client SDK for aid system
 
+## installation
+
+```bash
+yarn add @leon123858/aidjs
+```
+
 ## Core Components
 
 ### AidType
