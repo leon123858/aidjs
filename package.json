@@ -1,0 +1,27 @@
+{
+  "name": "aidjs",
+  "version": "0.1.0",
+  "description": "client SDK for aid wallet",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc --build && node ./dist/index.js",
+    "addUser": "npm adduser --registry=https://registry.npmjs.org"
+  },
+  "author": "leon123858",
+  "license": "Apache-2.0",
+  "keywords": [
+    "cmd",
+    "shell"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leon123858/aidjs.git"
+  }
+}
