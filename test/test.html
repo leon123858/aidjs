@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your TypeScript Library</title>
+</head>
+<body>
+<h1>TypeScript Library Test</h1>
+<div id="result"></div>
+
+<script type="module">
+    // Import your library here
+    import * as MyLibrary from '../dist/index.js';
+
+    // Test your library
+    function testLibrary() {
+        const result = MyLibrary.Aid.add(1, 2);
+        document.getElementById('result').textContent = `Test result: ${result}`;
+    }
+
+    testLibrary();
+</script>
+</body>
+</html>
