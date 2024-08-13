@@ -1,11 +1,13 @@
 {
   "name": "aid-js-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "client SDK for aid wallet",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist",
+    "/src",
     "README.md",
     "LICENSE"
   ],
