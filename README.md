@@ -48,16 +48,16 @@ Represents a complete assistance instance.
 Properties:
 - aid: string
 - certs: Map<string, AidCert>
-- privateMsg: Map<string, Map<string, string>>
+- privateMsg: Map<string, string>
 - data: Map<string, string>
 
 Methods:
-- constructor(aid: string, certs: Map<string, AidCert>, privateMsg: Map<string, Map<string, string>>, data: Map<string, string>)
+- constructor(aid: string, certs: Map<string, AidCert>, privateMsg: Map<string, string>, data: Map<string, string>)
 - static fromStr(str: string): Aid
 - toStr(): string
-- addCert(cert: AidCert, privateMsg: Map<string, string>)
+- addCert(cert: AidCert, privateMsg: string)
 - removeCert(timestamp: string)
-- listCerts(): { timestamp: string, cert: AidCert, privateMsg: Map<string, string> }[]
+- listCerts(): { timestamp: string, cert: AidCert, privateMsg: string }[]
 - getData(key: string): string
 - setData(key: string, value: string)
 
@@ -89,53 +89,6 @@ Methods:
 - removeAid(aid: string)
 - listAids(): AidPreview[]
 - findAid(aid: string): AidPreview
-
-## Usage Examples
-
-1. Creating an Aid instance:
-   ```typescript
-   const certs = new Map<string, AidCert>();
-   const privateMsg = new Map<string, Map<string, string>>();
-   const data = new Map<string, string>();
-   const aid = new Aid("uniqueAidString", certs, privateMsg, data);
-   ```
-
-2. Adding a certificate to an Aid:
-   ```typescript
-   const cert: AidCert = {
-     Aid: "certAidString",
-     CertType: AidType.P2p,
-     Claims: {},
-     Setting: {},
-     VerifyOptions: {},
-     ContractAddress: "0x...",
-     BlockChainUrl: "https://...",
-     ServerAddress: "https://..."
-   };
-   const certPrivateMsg = new Map<string, string>();
-   aid.addCert(cert, certPrivateMsg);
-   ```
-
-3. Listing certificates of an Aid:
-   ```typescript
-   const certList = aid.listCerts();
-   ```
-
-4. Creating an AidList:
-   ```typescript
-   const defaultUserInfosZip = JSON.stringify([["key1", "value1"], ["key2", "value2"]]);
-   const aidsZip = JSON.stringify([new AidPreview("aid1", new Map([["desc1", "value1"]]))]);
-   const aidList = new AidList(defaultUserInfosZip, aidsZip);
-   ```
-
-5. Managing AidList:
-   ```typescript
-   const newAidPreview = new AidPreview("aid2", new Map([["desc2", "value2"]]));
-   aidList.addAid(newAidPreview);
-   const foundAid = aidList.findAid("aid1");
-   aidList.removeAid("aid2");
-   const allAids = aidList.listAids();
-   ```
 
 ## Notes and Considerations
 
