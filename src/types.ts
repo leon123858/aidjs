@@ -57,8 +57,8 @@ class Aid {
 
     listCerts(): {
         timestamp: string,
-        cert: AidCert,
-        privateMsg: Map<string, string>
+        cert: AidCert | undefined,
+        privateMsg: Map<string, string> | undefined
     }[] {
         return Object.keys(this.certs).map(timestamp => {
             return {
@@ -69,7 +69,7 @@ class Aid {
         });
     }
 
-    getData(key: string): string {
+    getData(key: string): string | undefined {
         return this.data.get(key);
     }
 
@@ -98,8 +98,8 @@ class AidPreview {
 }
 
 class AidList {
-    defaultUserInfos: Map<string, string>;
-    aids: AidPreview[];
+    defaultUserInfos: Map<string, string> = new Map<string, string>();
+    aids: AidPreview[] = [];
 
     Constructor(defaultUserInfosZip: string, aidsZip: string) {
         this.defaultUserInfos = new Map<string, string>(JSON.parse(defaultUserInfosZip));
@@ -125,7 +125,7 @@ class AidList {
         return this.aids;
     }
 
-    findAid(aid: string): AidPreview {
+    findAid(aid: string): AidPreview | undefined {
         return this.aids.find(a => a.aid === aid);
     }
 }
