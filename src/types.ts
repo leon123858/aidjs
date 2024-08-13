@@ -25,10 +25,10 @@ interface AidCert extends ContractInfo, ServerInfo {
 class Aid {
     aid: string;
     certs: Map<string, AidCert>;
-    privateMsg: Map<string, Map<string, string>>;
+    privateMsg: Map<string, string>;
     data: Map<string, string>;
 
-    constructor(aid: string, certs: Map<string, AidCert>, privateMsg: Map<string, Map<string, string>>, data: Map<string, string>) {
+    constructor(aid: string, certs: Map<string, AidCert>, privateMsg: Map<string, string>, data: Map<string, string>) {
         this.aid = aid;
         this.certs = certs;
         this.privateMsg = privateMsg;
@@ -37,14 +37,19 @@ class Aid {
 
     static fromStr(str: string): Aid {
         const obj = JSON.parse(str);
-        return new Aid(obj.aid, obj.certs, obj.privateMsg, obj.data);
+        return new Aid(obj.aid, new Map(obj.certs), new Map(obj.privateMsg), new Map(obj.data));
     }
 
     toStr(): string {
-        return JSON.stringify(this);
+        return JSON.stringify({
+            aid: this.aid,
+            certs: Array.from(this.certs.entries()),
+            privateMsg: Array.from(this.privateMsg.entries()),
+            data: Array.from(this.data.entries())
+        });
     }
 
-    addCert(cert: AidCert, privateMsg: Map<string, string>) {
+    addCert(cert: AidCert, privateMsg: string) {
         let timestamp = new Date().getTime().toString();
         this.certs.set(timestamp, cert);
         this.privateMsg.set(timestamp, privateMsg);
@@ -58,7 +63,7 @@ class Aid {
     listCerts(): {
         timestamp: string,
         cert: AidCert | undefined,
-        privateMsg: Map<string, string> | undefined
+        privateMsg: string | undefined
     }[] {
         return Object.keys(this.certs).map(timestamp => {
             return {
@@ -89,11 +94,14 @@ class AidPreview {
 
     static fromStr(str: string): AidPreview {
         const obj = JSON.parse(str);
-        return new AidPreview(obj.aid, obj.descriptions);
+        return new AidPreview(obj.aid, new Map(obj.descriptions));
     }
 
     toStr(): string {
-        return JSON.stringify(this);
+        return JSON.stringify({
+            aid: this.aid,
+            descriptions: Array.from(this.descriptions.entries())
+        });
     }
 }
 
@@ -101,8 +109,8 @@ class AidList {
     defaultUserInfos: Map<string, string> = new Map<string, string>();
     aids: AidPreview[] = [];
 
-    Constructor(defaultUserInfosZip: string, aidsZip: string) {
-        this.defaultUserInfos = new Map<string, string>(JSON.parse(defaultUserInfosZip));
+    constructor(defaultUserInfosZip: string, aidsZip: string) {
+        this.defaultUserInfos = new Map(JSON.parse(defaultUserInfosZip));
         this.aids = JSON.parse(aidsZip);
     }
 
