@@ -1,5 +1,5 @@
 {
-  "name": "@leon1234858/aidjs",
+  "name": "aid-js-sdk",
   "version": "0.1.0",
   "description": "client SDK for aid wallet",
   "main": "dist/index.js",
@@ -12,8 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc --build && node ./dist/index.js",
-    "addUser": "npm adduser --registry=https://registry.npmjs.org",
-    "publish": "npm publish --access=public"
+    "addUser": "npm adduser --registry=https://registry.npmjs.org"
   },
   "author": "leon123858",
   "license": "Apache-2.0",
