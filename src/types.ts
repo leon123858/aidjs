@@ -109,6 +109,10 @@ class AidList {
     defaultUserInfos: Map<string, string> = new Map<string, string>();
     aids: AidPreview[] = [];
 
+    static newAidList(): AidList {
+        return new AidList(JSON.stringify(new Map()), JSON.stringify([]));
+    }
+
     constructor(defaultUserInfosZip: string, aidsZip: string) {
         this.defaultUserInfos = new Map(JSON.parse(defaultUserInfosZip));
         this.aids = JSON.parse(aidsZip);
