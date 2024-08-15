@@ -110,7 +110,7 @@ class AidList {
     aids: AidPreview[] = [];
 
     static newAidList(): AidList {
-        return new AidList(JSON.stringify(new Map()), JSON.stringify([]));
+        return new AidList(JSON.stringify(Array.from(new Map<string, string>().entries())), JSON.stringify([]));
     }
 
     constructor(defaultUserInfosZip: string, aidsZip: string) {
