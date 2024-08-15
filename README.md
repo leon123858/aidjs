@@ -84,6 +84,7 @@ Properties:
 
 Methods:
 - Constructor(defaultUserInfosZip: string, aidsZip: string)
+- newAidList() : AidList
 - export(): { defaultUserInfosZip: string, aidsZip: string }
 - addAid(aid: AidPreview)
 - removeAid(aid: string)
