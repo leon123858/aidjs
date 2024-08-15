@@ -65,13 +65,12 @@ class Aid {
         cert: AidCert | undefined,
         privateMsg: string | undefined
     }[] {
-        return Object.keys(this.certs).map(timestamp => {
-            return {
-                timestamp: timestamp,
-                cert: this.certs.get(timestamp),
-                privateMsg: this.privateMsg.get(timestamp)
-            };
-        });
+        const keys = Array.from(this.certs.keys());
+        return keys.map(timestamp => ({
+            timestamp: timestamp,
+            cert: this.certs.get(timestamp),
+            privateMsg: this.privateMsg.get(timestamp)
+        }));
     }
 
     getData(key: string): string | undefined {
