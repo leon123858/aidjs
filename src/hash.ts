@@ -29,10 +29,13 @@ class AidCertHash {
     }
 
     private static async hashString(str: string): Promise<string> {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(str);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        // 將字符串轉換為 Uint8Array
+        const msgUint8 = new TextEncoder().encode(str);
+        // 使用 SubtleCrypto 接口的 digest 方法計算哈希
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+        // 將 ArrayBuffer 轉換為 Uint8Array
         const hashArray = Array.from(new Uint8Array(hashBuffer));
+        // 將每個字節轉換為十六進制字符串
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 }
