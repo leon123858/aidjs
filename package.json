@@ -1,6 +1,6 @@
 {
   "name": "aid-js-sdk",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "client SDK for aid wallet",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
