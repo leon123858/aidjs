@@ -17,7 +17,6 @@ class AidCertHash {
         str += cert.ContractAddress;
         str += cert.BlockChainUrl;
         str += cert.ServerAddress;
-        str += cert.Sign;
         str += AidCertHash.sortedPrintMap(cert.Claims);
         str += AidCertHash.sortedPrintMap(cert.Setting);
         str += AidCertHash.sortedPrintMap(cert.VerifyOptions);
