@@ -1,6 +1,6 @@
 {
   "name": "aid-js-sdk",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "client SDK for aid wallet",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,8 +11,21 @@
     "README.md",
     "LICENSE"
   ],
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "setupFiles": ["./jest.setup.ts"]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "tsc --build && node ./dist/index.js",
     "addUser": "npm adduser --registry=https://registry.npmjs.org"
   },
