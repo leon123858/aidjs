@@ -12,7 +12,7 @@ interface UTXO {
     address: string;
 }
 
-class BlockchainService {
+class OurChainService {
     private BASE_URL: string;
     private readonly privateKey: string;
     private readonly ownerAddress: string;
@@ -162,4 +162,4 @@ class BlockchainService {
     }
 }
 
-export { BlockchainService, Contract, UTXO };
+export { OurChainService, Contract, UTXO };
