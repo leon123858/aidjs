@@ -12,6 +12,7 @@ interface ContractInfo {
 
 interface ServerInfo {
     ServerAddress: string;
+    Sign: string;
 }
 
 interface AidCert extends ContractInfo, ServerInfo {
