@@ -86,4 +86,26 @@ function base64ToArrayBuffer(base64: string): ArrayBuffer {
     return bytes.buffer;
 }
 
-export {pemToPrivateKey, generateRSAKeyPair}
+function uint8ArrayToString(array: Uint8Array): string {
+    const chunk = 8192; // 處理大型數組
+    let result = '';
+    for (let i = 0; i < array.length; i += chunk) {
+        result += String.fromCharCode.apply(null, Array.from(array.subarray(i, i + chunk)));
+    }
+    return result;
+}
+
+async function generateSignature(privateKey: CryptoKey, preSign: string): Promise<string> {
+    // sign the hashed preSign
+    const signature = await window.crypto.subtle.sign(
+        {
+            name: "RSASSA-PKCS1-v1_5",
+            hash: {name: "SHA-256"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+        },
+        privateKey,
+        new TextEncoder().encode(preSign)
+    );
+    return btoa(uint8ArrayToString(new Uint8Array(signature)))
+}
+
+export {pemToPrivateKey, generateRSAKeyPair, generateSignature}
